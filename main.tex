@@ -1,0 +1,131 @@
+% I used this document to create my PhD synopsis report as per the 2025 guidelines of the department of Civil and Environmental Engineering (IIT Delhi).
+% There might be a lot of inefficiencies as I was learning TeX as I went along so make any changes as required
+
+\documentclass[twoside, final, 12pt, openright]{memoir}    % change draft-final to final to see figures!!
+
+% packages input
+\usepackage{times}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{lipsum}
+\usepackage{parskip}
+\usepackage{graphicx, graphbox}
+\usepackage{amsmath, amssymb}
+\usepackage{float}
+% \usepackage[hidelinks, backref=false,pagebackref=false]{hyperref} % hyperlinks for references.
+\usepackage[hidelinks]{hyperref} % hyperlinks for references.
+\usepackage[backend=biber,natbib=true,style=apa, backref=false, annotation=false]{biblatex} % annotation flase to remove no of citations
+
+\usepackage{lipsum} % dummy text
+% packages input end
+
+% commands
+\pageaiv                % a4 size page
+\stockaiv               % a4 size 'stock' (page that goes into printer)
+\raggedbottom           % no spacing changes to fit content to 
+\OnehalfSpacing         % 1.5 spacing between lines
+\setFloatSpacing{1.5}   % spacing in float (fig and tables) 1.5 (for captions; inside table do 1 later)
+\setsecnumdepth{subsection} % numbering of sections upto sub-sections
+\chapterstyle{hangnum}
+\addbibresource{My_Library.bib} % bibliography file
+% 1 inch all sides
+\setulmarginsandblock{1in}{1in}{*}      % top=1in, bottom=1in
+\setlrmarginsandblock{1in}{1in}{1}% left=1in, right=1in
+\setheadfoot{\headheight}{\footskip}    % Lock footer space 30pt
+\checkandfixthelayout
+\nouppercaseheads
+
+% header and footers
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\makeoddfoot{plain}{}{}{\thepage} % page number on the bottom right
+\makepagestyle{pter}
+\makeoddhead{pter}{}{}{\itshape\leftmark}
+\makeevenhead{pter}{\itshape\leftmark}{}{}
+\makeoddfoot{pter}{}{}{\thepage}
+\makeevenfoot{pter}{\thepage}{}{}
+\pagestyle{pter}
+
+\makepagestyle{abs}
+\makeoddhead{abs}{}{}{}
+\makeevenhead{abs}{}{}{}
+\makeoddfoot{abs}{}{}{\thepage}
+\makeevenfoot{abs}{}{}{\thepage}
+% commands end
+
+% title page
+\def\maketitle{
+    \setcounter{page}{0}
+    \thispagestyle{empty}
+    \begin{center}
+        \centering
+        \vfill
+        {\Large \textbf{\emph{Synopsis report of proposed Ph.D. thesis entitled}}}
+        \vfill
+        {\LARGE \textbf{GROUNDBREAKING RESEARCH WORK}}
+        \vfill
+        {\Large by}
+        \vfill
+        {\LARGE \textbf{SoyBoy}}
+        \vfil
+        {\LARGE \textbf{ENTRY NUMBER}}\\
+        \vspace{14pt}
+        {\Large under the guidance of}\\
+        \vspace{14pt}
+        {\LARGE \textbf{Dr. DRE}}
+        \vfil
+        {\Large \textbf{DESIGNATION}}
+        \vfill
+        \includegraphics[height=2.5in,width=2.5in, keepaspectratio]{iitd_logo.jpg}
+        \vfill
+        {\LARGE Department of Civil and Environmental Engineering}\\
+        {\LARGE Indian Institute of Technology (IIT) Delhi}\\
+        \vspace{12pt}
+        {\Large MONTH, YEAR}\\
+        \end{center}
+}
+
+% abstract width
+\renewenvironment{abstract}
+ {
+  \begin{center}
+  \bfseries \Large\abstractname\vspace{-.5em}\vspace{0pt}
+  \end{center}
+  \setlength{\leftmargin}{0cm}%
+    \setlength{\rightmargin}{\leftmargin}}%
+
+% \renewcommand{\abstractnamefont}{\Large\bfseries}
+% \renewcommand{\abstracttextfont}{\normalfont\normalsize}
+% document begin
+\begin{document}
+
+\frontmatter
+\maketitle
+\clearpage
+\shipout\null   % pure blank page after title page
+\tableofcontents*
+\clearpage
+\shipout\null
+% \stepcounter{page}
+% \abstractintoc
+\addcontentsline{toc}{chapter}{\protect\numberline{}Abstract}
+
+\include{frontmatter/abstract.tex}
+\shipout\null
+
+\mainmatter
+\allowdisplaybreaks
+\include{mainmatter/introduction}
+\include{mainmatter/objective_01}
+\include{mainmatter/thesis_outline_publications}
+
+
+
+
+\backmatter
+
+% Bibliography
+% Use your own bib file (can export reference manager (e.g. Zotero) library to bib as well)
+\begin{SingleSpace}
+    \printbibliography[heading=bibintoc,title={References}]
+\end{SingleSpace}
+
+\end{document}
